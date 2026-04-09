@@ -1,0 +1,85 @@
+Test Run: 2026-04-10
+Pods: 3 replicas (poll-app:1.0 custom image)
+Redis: External cluster on host (ports 7001-7006)
+=============================================
+  Poll App Load Test
+  Target: http://localhost:80/poll
+  Requests: 50
+=============================================
+
+>>> Phase 1: Sending 25 GET requests...
+---------------------------------------------
+  [1] Pod: voter-deployment-5965c4dcbd-b8zwl
+  [2] Pod: voter-deployment-5965c4dcbd-fqnjt
+  [3] Pod: voter-deployment-5965c4dcbd-fqnjt
+  [4] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [5] Pod: voter-deployment-5965c4dcbd-b8zwl
+  [6] Pod: voter-deployment-5965c4dcbd-fqnjt
+  [7] Pod: voter-deployment-5965c4dcbd-b8zwl
+  [8] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [9] Pod: voter-deployment-5965c4dcbd-b8zwl
+  [10] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [11] Pod: voter-deployment-5965c4dcbd-b8zwl
+  [12] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [13] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [14] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [15] Pod: voter-deployment-5965c4dcbd-fqnjt
+  [16] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [17] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [18] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [19] Pod: voter-deployment-5965c4dcbd-b8zwl
+  [20] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [21] Pod: voter-deployment-5965c4dcbd-b8zwl
+  [22] Pod: voter-deployment-5965c4dcbd-b8zwl
+  [23] Pod: voter-deployment-5965c4dcbd-fqnjt
+  [24] Pod: voter-deployment-5965c4dcbd-kmr9f
+  [25] Pod: voter-deployment-5965c4dcbd-fqnjt
+
+>>> Phase 2: Sending 25 POST votes...
+---------------------------------------------
+  [1] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: Go
+  [2] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: Rust
+  [3] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: JavaScript
+  [4] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: Rust
+  [5] Pod: voter-deployment-5965c4dcbd-fqnjt  |  Voted: JavaScript
+  [6] Pod: voter-deployment-5965c4dcbd-fqnjt  |  Voted: Go
+  [7] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: Go
+  [8] Pod: voter-deployment-5965c4dcbd-kmr9f  |  Voted: JavaScript
+  [9] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: Python
+  [10] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: Python
+  [11] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: Go
+  [12] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: JavaScript
+  [13] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: Go
+  [14] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: Python
+  [15] Pod: voter-deployment-5965c4dcbd-fqnjt  |  Voted: JavaScript
+  [16] Pod: voter-deployment-5965c4dcbd-b8zwl  |  Voted: Python
+  [17] Pod: voter-deployment-5965c4dcbd-fqnjt  |  Voted: Rust
+  [18] Pod: voter-deployment-5965c4dcbd-kmr9f  |  Voted: Rust
+  [19] Pod: voter-deployment-5965c4dcbd-kmr9f  |  Voted: Rust
+  [20] Pod: voter-deployment-5965c4dcbd-kmr9f  |  Voted: Go
+  [21] Pod: voter-deployment-5965c4dcbd-fqnjt  |  Voted: Python
+  [22] Pod: voter-deployment-5965c4dcbd-kmr9f  |  Voted: Python
+  [23] Pod: voter-deployment-5965c4dcbd-kmr9f  |  Voted: Go
+  [24] Pod: voter-deployment-5965c4dcbd-fqnjt  |  Voted: Rust
+  [25] Pod: voter-deployment-5965c4dcbd-kmr9f  |  Voted: Rust
+
+=============================================
+  Load Distribution Summary
+=============================================
+  voter-deployment-5965c4dcbd-kmr9f  ->  18 requests
+  voter-deployment-5965c4dcbd-b8zwl  ->  20 requests
+  voter-deployment-5965c4dcbd-fqnjt  ->  12 requests
+=============================================
+
+>>> Final poll results:
+{
+  "pod": "voter-deployment-5965c4dcbd-fqnjt",
+  "poll": {
+    "Go": 7,
+    "JavaScript": 5,
+    "Python": 6,
+    "Rust": 7
+  }
+}
+
+RESULT: PASS — All 3 pods share consistent state via Redis.
