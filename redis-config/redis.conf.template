@@ -1,0 +1,12 @@
+port 7001
+cluster-enabled yes
+cluster-config-file nodes-7001.conf
+cluster-node-timeout 5000
+appendonly yes
+appendfilename "appendonly-7001.aof"
+dbfilename dump-7001.rdb
+dir ./
+bind 0.0.0.0
+protected-mode no
+loglevel notice
+logfile ""
